@@ -1,0 +1,32 @@
+cmd "01_core" {
+    exec = "roscore";
+    host = "localhost";
+}
+
+cmd "02_start_seadrone" {
+    exec = "roslaunch seadrone seadrone_start.launch rviz:=false camera:=false veh:=seadrone";
+    host = "localhost";
+}
+
+cmd "03_camera" {
+    exec = "rosrun seadrone cam.py";
+    host = "localhost";
+}
+
+cmd "rviz" {
+    exec = "rviz -d $(find seadrone)/config/rviz/seadrone.rviz";
+    host = "localhost";
+}
+
+
+
+script "start_seadrone" 
+{
+    start cmd "01_core" wait "running";
+    wait ms 1500;
+    start cmd "02_start_seadrone" wait "running";
+    wait ms 1500;
+    start cmd "03_camera" wait "running";
+    wait ms 1500;
+    
+}

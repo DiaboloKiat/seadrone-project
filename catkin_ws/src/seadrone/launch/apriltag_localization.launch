@@ -1,0 +1,20 @@
+<launch>
+  <!-- Parameters for apriltag2 ros continuous node-->
+  <arg name="camera_name" default="/rgb" />
+  <arg name="camera_frame" default="camera" />
+  <arg name="image_topic" default="image_rect_color" />
+  <arg name="veh" default="seadrone"/>
+  
+  <!-- Apriltag detection -->
+<group ns="$(arg veh)">
+    <node pkg="seadrone" type="cam.py" name="nodecam_namespace" clear_params="true" output="screen">
+    </node>
+    <remap from="/rgb/camera_info" to ="/seadrone_info" />
+    <remap from="/rgb/image_rect_color" to="/seadrone_image" />
+  <include file="$(find apriltags2_ros)/launch/continuous_detection.launch">
+      <arg name="camera_name" value="$(arg camera_name)"/>
+      <arg name="camera_frame" value="$(arg camera_frame)"/>
+      <arg name="image_topic" value="$(arg image_topic)"/>
+  </include>
+</group>    
+</launch>

@@ -1,0 +1,14 @@
+<launch>
+  <!-- Turn on camera -->
+  <node name="camera_node" pkg="seadrone" type="cam.py" output="screen"/>
+
+  <!-- Apriltag -->
+  <include file="$(find apriltags_ros)/launch/topic2_apriltag.launch"/>
+  
+  <!-- Calculate distance node -->
+  <!-- Tag distance -->
+  <include file="$(find apriltag)/launch/tag_distance.launch"/>
+  
+  <!-- rviz -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find apriltag)/config/rviz/topic2.rviz"/>
+</launch>

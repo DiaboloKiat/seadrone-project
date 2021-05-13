@@ -1,0 +1,18 @@
+seadrone_node.cpp:  /catkin_ws/src/seadrone/src
+cam.py: /catkin_ws/src/seadrone/src
+
+open camera: rviz
+seadrone/catkin_ws: source devel/setup.bash
+
+
+seadrone/catkin_ws: rostopic echo /seadrone/tag_detections
+seadrone/catkin_ws: rostopic list
+
+seadrone/catkin_ws/devel:source setup.bash
+			rostopic echo /seadrone_info
+			rostopic echo /rgb/camera_info
+
+
+seadrone/catkin_ws/src/seadrone/launch: roslaunch apriltag_localization.launch
+
+
