@@ -18,6 +18,9 @@ $ source git-pull.sh
 ```
 $ source git-push.sh
 ```
+- First enter the commit message
+- Second enter the user name and password
+
 ---
 ## **Run Seadrone**
 ### Start Seadrone
