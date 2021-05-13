@@ -18,5 +18,5 @@ if [ "$CONFLICTS" -gt 0 ] ; then
    return 1
 fi
 
-cd ~/Seadrone
+cd ~/seadrone-project
 return 0
