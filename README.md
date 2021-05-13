@@ -28,13 +28,20 @@ $ source environment.sh
 $ source start_seadrone_env.sh
 ```
 
-### Procman Hot-key
+### [Procman](https://github.com/DiaboloKiat/procman)
+- Hot-key
+
 | Hot Key     | Function           |
 |:-----------:|:------------------:|
 | Ctrl + S    | Start              |
 | Ctrl + T    | Stop               |
 | Ctrl + R    | Restart            |
 | Ctrl + A    | Select All         |
+
+- clone procman repo and setup 
+```
+$ git clone https://github.com/DiaboloKiat/procman.git
+```
 
 ### Joystick Controller
 <img src="https://github.com/DiaboloKiat/seadrone-project/blob/master/img/Joystick.png"/>
