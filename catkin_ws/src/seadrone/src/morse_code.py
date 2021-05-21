@@ -13,7 +13,7 @@ def morse_code():
     rate = rospy.Rate(1000) # 1000hz
 
     while not rospy.is_shutdown():
-        morse = input("Please enter a alphabet: ")
+        morse = input("Please enter a word: ")
 
         for i in morse:
             # * —

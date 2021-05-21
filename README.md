@@ -49,6 +49,15 @@ LED[top/bot] = [0 / 0]
 -----------------------------
 ```
 
+### Morse Code
+<img src="https://github.com/DiaboloKiat/seadrone-project/blob/master/img/Morse_code.jpg"/>
+
+```
+$ cd ~/seadrone-project
+$ source catkin_make.sh
+$ source environment.sh
+$ rosrun seadrone morse_code.py
+```
 
 
 ### [Procman](https://github.com/DiaboloKiat/procman)
