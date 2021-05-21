@@ -30,6 +30,26 @@ $ source catkin_make.sh
 $ source environment.sh
 $ source start_seadrone_env.sh
 ```
+#### Example Print Out
+```
+-----------------------------
+depth = 0
+goal depth = -0.0040791
+goal_euler = -4.72688
+imu = -4.75276 -0.0404422 -0.0471007 -0.00319267 0 0.00212845
+-----------------------------
+rx 5 thrusters
+measured rpm = 0 0 0 0 5
+command rpm = 0 0 0 0 0
+battery voltage = 29.7708
+
+-----------------------------
+Camera = 0
+LED[top/bot] = [0 / 0]
+-----------------------------
+```
+
+
 
 ### [Procman](https://github.com/DiaboloKiat/procman)
 - Hot-key

@@ -1,14 +1,17 @@
 #!/usr/bin/env python
 # license removed for brevity
 import rospy
-from std_msgs.msg import Int16
+#from std_msgs.msg import Int16
+from std_msgs.msg import String
+
+
 
 def talker():
-    pub = rospy.Publisher('chatter', Int16, queue_size=10)
+    pub = rospy.Publisher('morse_code', String, queue_size=10)
     rospy.init_node('talker', anonymous=True)
     rate = rospy.Rate(10) # 10hz
     while not rospy.is_shutdown():
-        hello_str = 1
+        hello_str = "hello world"
         rospy.loginfo(hello_str)
         pub.publish(hello_str)
         rate.sleep()

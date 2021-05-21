@@ -14,7 +14,7 @@ cmd "03_camera" {
 }
 
 cmd "rviz" {
-    exec = "rviz -d $(find seadrone)/config/rviz/seadrone.rviz";
+    exec = "roslaunch seadrone rviz.launch";
     host = "localhost";
 }
 

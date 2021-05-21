@@ -150,9 +150,13 @@ include_directories(
 # add_executable(fsm_node src/fsm.cpp ${UDPUSER_INC_DIR}/CUDPCommUser.cpp)
 # target_link_libraries(fsm_node ${catkin_LIBRARIES})
 
-# add_executable(try_node src/try_c.cpp)
-# add_dependencies(try_node ${catkin_EXPORTED_TARGETS})
-# target_link_libraries(try_node ${catkin_LIBRARIES})
+add_executable(try_node_sub src/test/try_sub.cpp)
+add_dependencies(try_node_sub ${catkin_EXPORTED_TARGETS})
+target_link_libraries(try_node_sub ${catkin_LIBRARIES})
+
+add_executable(try_node_pub src/test/try_pub.cpp)
+add_dependencies(try_node_pub ${catkin_EXPORTED_TARGETS})
+target_link_libraries(try_node_pub ${catkin_LIBRARIES})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -203,6 +207,11 @@ include_directories(
 #   # myfile2
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
+
+catkin_install_python(PROGRAMS src/morse_code.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
 
 #############
 ## Testing ##

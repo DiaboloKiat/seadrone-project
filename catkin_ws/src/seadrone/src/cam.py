@@ -29,11 +29,15 @@ def image():
 		cam_info.D = [-0.331206, 0.072907, -0.016254, -0.025161, 0.000000]
 		cam_info.R = [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
 		cam_info.P = [635.284485, 0.000000, 805.929614, 0.000000, 635.284485, 0.000000, 805.929614, 0.000000, 0.0, 0.0, 1.0, 0.0]
-		cam_info.distortion_model =  "plumb_bob"
+		cam_info.distortion_model = "plumb_bob"
 		pub_info.publish(cam_info)
 		pub_img.publish(bridge.cv2_to_imgmsg(frame, "bgr8"))
 		rate.sleep()
 
 if __name__ == "__main__":
-	image()
+	try:
+		image()
+	except rospy.ROSInterruptException:
+		pass
+
 

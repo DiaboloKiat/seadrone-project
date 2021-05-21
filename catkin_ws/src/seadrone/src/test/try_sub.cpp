@@ -5,18 +5,9 @@
 /**
  * This tutorial demonstrates simple receipt of messages over the ROS system.
  */
-void chatterCallback(const std_msgs::Int16& msg)
+void chatterCallback(const std_msgs::String::ConstPtr& msg)
 {
-    if(msg.data==1)
-    {
-        ROS_INFO("I heard: [%d]", msg);
-    }
-    else
-    {
-        ROS_INFO("I did not heard");
-    }
-    
-    
+    ROS_INFO("I heard: [%s]", msg->data.c_str());
 }
 
 int main(int argc, char **argv)
@@ -55,7 +46,7 @@ int main(int argc, char **argv)
    * is the number of messages that will be buffered up before beginning to throw
    * away the oldest ones.
    */
-  ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback);
+  ros::Subscriber sub = n.subscribe("morse_code", 1000, chatterCallback);
 
   /**
    * ros::spin() will enter a loop, pumping callbacks.  With this version, all

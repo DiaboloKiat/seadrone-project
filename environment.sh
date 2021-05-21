@@ -1,2 +1,3 @@
 source ~/seadrone-project/catkin_ws/devel/setup.bash
-#source ~/.bashrc
+source ~/seadrone-project/catkin_ws/install/setup.bash --extend
+# source ~/.bashrc

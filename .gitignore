@@ -1,5 +1,9 @@
 build/
 devel/
-.catkin_workspace
 lcm/
 procman/
+
+
+
+
+.catkin_workspace

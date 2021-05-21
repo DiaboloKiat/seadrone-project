@@ -7,6 +7,9 @@
 #include "CUDPCommUser.hpp"
 #include <iostream>
 #include <math.h>
+#include <sys/wait.h>
+#include <string>
+#include <sstream>
 using namespace std;
 
 bool motor = false;
@@ -27,7 +30,22 @@ int last_depth_flag = 0;
 double delta_depth = 0;
 double yaw = 0;   //z axis
 
-void joycallback(const sensor_msgs::Joy::ConstPtr& msg)
+void morse_cb(const std_msgs::Int16::ConstPtr& msg)
+{
+  ROS_INFO("I heard: [%i]", msg->data);
+  if(msg->data == 1)
+  {
+    led_brightness_top = 100;
+    led_brightness_bot = 100;
+  }
+  else
+  {
+    led_brightness_top = 0;
+    led_brightness_bot = 0;
+  }
+}
+
+void joy_cb(const sensor_msgs::Joy::ConstPtr& msg)
 {
   //button: RB(5) LB(4)
   if(msg->buttons[5]==1)
@@ -131,7 +149,8 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "joystick_node");
   ros::NodeHandle n;
-  ros::Subscriber sub = n.subscribe("joy", 1000, joycallback);
+  ros::Subscriber sub_joy = n.subscribe("/seadrone/joy", 1000, joy_cb);
+  ros::Subscriber sub_morse = n.subscribe("/seadrone/morse_code", 1000, morse_cb);
   // ros::Publisher gripper_pub = n.advertise<std_msgs::Int16>("/seadrone/gripper", 1000);
   printf("Start\n");
 
@@ -209,7 +228,7 @@ int main(int argc, char **argv)
     ros::spinOnce();
     ros::Rate loop_rate(1000); // wrong sleeping interval may cause rotors to fail
   }
-  robotData.gimbal_Pitch_ = 0; //camera
+  robotData.gimbal_Pitch_ = 0.314; //camera
   robotData.led_brightness_top_ = 0; //LED top
   robotData.led_brightness_bot_ = 0; //LED bot
   udpUser_.thread_communication_send();
