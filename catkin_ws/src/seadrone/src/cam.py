@@ -70,6 +70,10 @@ def image():
 		# Battery status and image rendering
 		cv2.putText(image, "fps:{}".format(fps), (5, 720 - 5), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 		pub_hand.publish(bridge.cv2_to_imgmsg(image, "bgr8"))
+		cv2.imshow('hand_pose_seadrone', image)
+		cv2.waitKey(3)
+
+	cv2.destroyAllWindows()
 
 
 if __name__ == "__main__":
