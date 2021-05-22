@@ -1,4 +1,4 @@
-# **Seadrone**
+<h1 align="center"> Seadrone </h1>
 
 ---
 ## **Clone repo and catkin_make**
@@ -50,7 +50,8 @@ LED[top/bot] = [0 / 0]
 ```
 
 ### Morse Code
-<img src="https://github.com/DiaboloKiat/seadrone-project/blob/master/img/Morse_code.jpg"/>
+<h4 align="center"> <img src="https://github.com/DiaboloKiat/seadrone-project/blob/master/img/Morse_code.jpg"/> </h4>
+
 
 ```
 $ cd ~/seadrone-project
@@ -76,7 +77,8 @@ $ git clone https://github.com/DiaboloKiat/procman.git
 ```
 
 ### Joystick Controller
-<img src="https://github.com/DiaboloKiat/seadrone-project/blob/master/img/Joystick.png"/>
+<h4 align="center"> <img src="https://github.com/DiaboloKiat/seadrone-project/blob/master/img/Joystick.png"/> </h4>
+
 
 ### Raspberry-Pi
 - Raspberrypi login: pi
