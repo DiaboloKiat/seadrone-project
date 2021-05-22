@@ -8,8 +8,18 @@ cmd "02_start_seadrone" {
     host = "localhost";
 }
 
-cmd "03_camera" {
+cmd "03a_camera" {
     exec = "rosrun seadrone cam.py";
+    host = "localhost";
+}
+
+cmd "03b_mediapipe_hand" {
+    exec = "rosrun seadrone cam_hand.py";
+    host = "localhost";
+}
+
+cmd "03c_hand_gesture" {
+    exec = "rosrun object_detection hand_gesture.py";
     host = "localhost";
 }
 
@@ -26,7 +36,7 @@ script "start_seadrone"
     wait ms 1500;
     start cmd "02_start_seadrone" wait "running";
     wait ms 1500;
-    start cmd "03_camera" wait "running";
+    start cmd "03a_camera" wait "running";
     wait ms 1500;
     
 }
