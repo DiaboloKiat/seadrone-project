@@ -10,8 +10,13 @@ from std_msgs.msg import Int16
 def morse_code():
     rospy.init_node("morse_code", anonymous=True)
     pub_morse = rospy.Publisher('/seadrone/morse_code', Int16, queue_size = 10)
+    rospy.Subscriber("/hand_gesture/number", Int16, predict_cb)
     rate = rospy.Rate(1000) # 1000hz
 
+    rospy.spin()
+
+
+'''
     while not rospy.is_shutdown():
         morse = input("Please enter a word: ")
 
@@ -262,6 +267,96 @@ def morse_code():
             time.sleep(2)
 
         rate.sleep()
+'''
+
+def predict_cb(data):
+    i = data.data
+    print(i)
+    # * — — — —
+    if i == 1:
+        short_signal()
+        long_signal()
+        long_signal()
+        long_signal()
+        long_signal()
+    
+    # * * — — —
+    elif i == 2:
+        short_signal()
+        short_signal()
+        long_signal()
+        long_signal()
+        long_signal()
+
+    # * * * — —
+    elif i == 3:
+        short_signal()
+        short_signal()
+        short_signal()
+        long_signal()
+        long_signal()
+
+    # * * * * —
+    elif i == 4:
+        short_signal()
+        short_signal()
+        short_signal()
+        short_signal()
+        long_signal()
+
+    # * * * * *
+    elif i == 5:
+        short_signal()
+        short_signal()
+        short_signal()
+        short_signal()
+        short_signal()
+
+    # — * * * *
+    elif i == 6:
+        long_signal()
+        short_signal()
+        short_signal()
+        short_signal()
+        short_signal()
+
+    # — — * * *
+    elif i == 7:
+        long_signal()
+        long_signal()
+        short_signal()
+        short_signal()
+        short_signal()
+
+    # — — — * *
+    elif i == 8:
+        long_signal()
+        long_signal()
+        long_signal()
+        short_signal()
+        short_signal()
+
+    # — — — — *
+    elif i == 9:
+        long_signal()
+        long_signal()
+        long_signal()
+        long_signal()
+        short_signal()
+
+    # — — — — —
+    elif i == 0:
+        long_signal()
+        long_signal()
+        long_signal()
+        long_signal()
+        long_signal()
+        
+    else:
+        print("Done!!!\n")
+
+    time.sleep(5)
+
 
 def short_signal():
     pub_morse = rospy.Publisher('/seadrone/morse_code', Int16, queue_size = 10)

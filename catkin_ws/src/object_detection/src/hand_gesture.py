@@ -11,7 +11,7 @@ import mediapipe as mp      # https://google.github.io/mediapipe/solutions/hands
 from cv_bridge import CvBridge, CvBridgeError
 from sensor_msgs.msg import Image, CameraInfo
 from collections import deque
-from std_msgs.msg import String
+from std_msgs.msg import String, Int16
 from utils import CvFpsCalc
 from gestures import *
 
@@ -19,7 +19,8 @@ def Hand_gesture():
     rospy.init_node("hand_gesture_node", anonymous=True)
 
     pub_hand = rospy.Publisher('/hand_gesture/image', Image, queue_size = 10)
-
+    pub_number  = rospy.Publisher('/hand_gesture/number', Int16, queue_size = 10)
+    
     bridge = CvBridge()
 
     # FPS Measurement
@@ -27,6 +28,8 @@ def Hand_gesture():
 
     # Argument parsing
     WRITE_CONTROL = False
+    history_number = 0
+    history_model = 0
 
     gesture_detector = GestureRecognition(min_detection_confidence=0.7, min_tracking_confidence=0.5)
     gesture_buffer = GestureBuffer(buffer_len=5)
@@ -72,6 +75,22 @@ def Hand_gesture():
         gesture_buffer.add_gesture(gesture_id)
 
         debug_image = gesture_detector.draw_info(debug_image, fps, mode, number)
+        history_id = -1
+
+        if 0 <= gesture_id <= 9 and history_number >= 100:
+            if 0 <= gesture_id <= 9 and history_model <= 50:
+                history_model += 1
+                print(history_model)
+            elif 0 <= gesture_id <= 9 and history_model >= 50:
+                pub_number.publish(gesture_id)
+                history_number = 0
+                history_model = 0
+                print('pub')
+
+        else:
+            history_number += 1
+            history_model = 0
+            print(history_number)
 
         cv2.imshow('Gesture Recognition', debug_image)
         pub_hand.publish(bridge.cv2_to_imgmsg(debug_image, "bgr8"))
