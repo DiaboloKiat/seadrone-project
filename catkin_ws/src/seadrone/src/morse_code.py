@@ -355,7 +355,7 @@ def predict_cb(data):
     else:
         print("Done!!!\n")
 
-    time.sleep(5)
+    time.sleep(3)
 
 
 def short_signal():
