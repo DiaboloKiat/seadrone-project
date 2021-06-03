@@ -12,11 +12,11 @@ $ source environment.sh
 ## **Github**
 ### git-pull
 ```
-$ source git-pull.sh
+$ source github/git-pull.sh
 ```
 ### git-push
 ```
-$ source git-push.sh
+$ source github/git-push-master.sh
 ```
 - First enter the commit message
 - Second enter the user name and password
