@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # https://maker.pro/raspberry-pi/projects/raspberry-pi-webcam-robot
 # https://osoyoo.com/2020/04/30/install-a-web-camera-on-raspberry-pi/
 
@@ -6,7 +6,7 @@
 import rospy
 import numpy as np
 import cv2
-import mediapipe as mp      # https://google.github.io/mediapipe/solutions/hands.html
+#import mediapipe as mp      # https://google.github.io/mediapipe/solutions/hands.html
 
 from cv_bridge import CvBridge, CvBridgeError
 from sensor_msgs.msg import Image, CameraInfo

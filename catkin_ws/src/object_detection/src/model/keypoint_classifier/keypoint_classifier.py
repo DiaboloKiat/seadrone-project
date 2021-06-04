@@ -7,7 +7,7 @@ import tensorflow as tf
 class KeyPointClassifier(object):
     def __init__(
         self,
-        model_path='/home/diabolokiat/seadrone-project/catkin_ws/src/object_detection/src/model/keypoint_classifier/keypoint_classifier.tflite',
+        model_path='/home/seadrone/seadrone-project/catkin_ws/src/object_detection/src/model/keypoint_classifier/keypoint_classifier.tflite',
         num_threads=1,
     ):
         self.interpreter = tf.lite.Interpreter(model_path=model_path)
