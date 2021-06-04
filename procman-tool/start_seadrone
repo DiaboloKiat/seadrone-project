@@ -14,12 +14,12 @@ cmd "03a_camera" {
 }
 
 cmd "03b_mediapipe_hand" {
-    exec = "rosrun seadrone cam_hand.py";
+    exec = "python3 catkin_ws/src/seadrone/src/cam_hand.py";
     host = "localhost";
 }
 
 cmd "03c_hand_gesture" {
-    exec = "rosrun object_detection hand_gesture.py";
+    exec = "python3 catkin_ws/src/object_detection/src/hand_gesture.py";
     host = "localhost";
 }
 
