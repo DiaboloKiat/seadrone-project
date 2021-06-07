@@ -204,7 +204,7 @@ RUN wget https://github.com/IntelRealSense/librealsense/archive/v${LIBREALSENSE_
 
 ####################################### mediapipe ###########################################
 
-RUN cd ${HOME} && git clone https://github.com/google/mediapipe.git
+RUN cd ${HOME} && git clone https://github.com/google/mediapipe.git \
     && cd mediapipe \
     && sed -i "s/x86_64-linux-gnu/aarch64-linux-gnu/g" third_party/opencv_linux.BUILD
 
