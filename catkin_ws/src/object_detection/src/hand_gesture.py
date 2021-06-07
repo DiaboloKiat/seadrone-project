@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
+# -*- coding: UTF-8 -*-
 
 import rospy
 import numpy as np
@@ -80,17 +81,17 @@ def Hand_gesture():
         if 0 <= gesture_id <= 9 and history_number >= 100:
             if 0 <= gesture_id <= 9 and history_model <= 50:
                 history_model += 1
-                print(history_model)
+                #print(history_model)
             elif 0 <= gesture_id <= 9 and history_model >= 50:
                 pub_number.publish(gesture_id)
                 history_number = 0
                 history_model = 0
-                print('pub')
+                print('published\n')
 
         else:
             history_number += 1
             history_model = 0
-            print(history_number)
+            #print(history_number)
 
         cv2.imshow('Gesture Recognition', debug_image)
         pub_hand.publish(bridge.cv2_to_imgmsg(debug_image, "bgr8"))

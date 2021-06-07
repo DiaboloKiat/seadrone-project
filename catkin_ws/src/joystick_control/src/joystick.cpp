@@ -35,12 +35,12 @@ void morse_cb(const std_msgs::Int16::ConstPtr& msg)
   ROS_INFO("I heard: [%i]", msg->data);
   if(msg->data == 1)
   {
-    led_brightness_top = 10;
-    led_brightness_bot = 10;
+    //led_brightness_top = 10;
+    led_brightness_bot = 2;
   }
   else
   {
-    led_brightness_top = 0;
+    //led_brightness_top = 0;
     led_brightness_bot = 0;
   }
 }

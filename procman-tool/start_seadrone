@@ -14,12 +14,17 @@ cmd "03a_camera" {
 }
 
 cmd "03b_mediapipe_hand" {
-    exec = "python3 catkin_ws/src/seadrone/src/cam_hand.py";
+    exec = "rosrun seadrone cam_hand.py";
     host = "localhost";
 }
 
 cmd "03c_hand_gesture" {
-    exec = "python3 catkin_ws/src/object_detection/src/hand_gesture.py";
+    exec = "rosrun object_detection hand_gesture.py";
+    host = "localhost";
+}
+
+cmd "04_morse_code" {
+    exec = "rosrun seadrone morse_code.py";
     host = "localhost";
 }
 
@@ -36,7 +41,9 @@ script "start_seadrone"
     wait ms 1500;
     start cmd "02_start_seadrone" wait "running";
     wait ms 1500;
-    start cmd "03a_camera" wait "running";
+    start cmd "04_morse_code" wait "running";
+    wait ms 1500;
+    start cmd "03c_hand_gesture" wait "running";
     wait ms 1500;
     
 }

@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
+# -*- coding: UTF-8 -*-
 
 import rospy
 import numpy as np
@@ -355,7 +356,7 @@ def predict_cb(data):
     else:
         print("Done!!!\n")
 
-    time.sleep(3)
+    time.sleep(1)
 
 
 def short_signal():
@@ -363,7 +364,7 @@ def short_signal():
     rate = rospy.Rate(1000) # 1000hz
     joy_node = 1
     pub_morse.publish(joy_node)
-    time.sleep(0.5)
+    time.sleep(0.1)
     joy_node = 0
     pub_morse.publish(joy_node)
     time.sleep(1)
@@ -373,7 +374,7 @@ def long_signal():
     rate = rospy.Rate(1000) # 1000hz
     joy_node = 1
     pub_morse.publish(joy_node)
-    time.sleep(1.5)
+    time.sleep(0.5)
     joy_node = 0
     pub_morse.publish(joy_node)
     time.sleep(1)
