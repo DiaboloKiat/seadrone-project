@@ -11,6 +11,7 @@ import cv2
 from cv_bridge import CvBridge, CvBridgeError
 from sensor_msgs.msg import Image, CameraInfo
 from std_msgs.msg import String
+from utils import CvFpsCalc
 
 def image():
 	bridge = CvBridge()
@@ -21,11 +22,16 @@ def image():
 	pub_img = rospy.Publisher('/seadrone_image/image', Image, queue_size = 10)
 	pub_info = rospy.Publisher('/seadrone_info', CameraInfo, queue_size = 10)
 	
+	# FPS Measurement
+	cv_fps_calc = CvFpsCalc(buffer_len=5)
+
 	cap = cv2.VideoCapture('http://192.168.0.122:8090/?action=stream')
 	rate = rospy.Rate(1000) # 1000hz
 	print("Start\n")
 
 	while not rospy.is_shutdown():
+		fps = cv_fps_calc.get()
+
 		ret, frame = cap.read()
 		image = cv2.flip(frame, 1)
 		cam_info = CameraInfo()
@@ -40,6 +46,7 @@ def image():
 		pub_img.publish(bridge.cv2_to_imgmsg(image, "bgr8"))
 		rate.sleep()
 		
+		cv2.putText(image, "fps:{}".format(fps), (5, 720 - 5), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 		cv2.imshow('seadrone_camera', image)
 		cv2.waitKey(3)
 

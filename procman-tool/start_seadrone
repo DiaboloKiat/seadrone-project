@@ -41,8 +41,6 @@ script "start_seadrone"
     wait ms 1500;
     start cmd "02_start_seadrone" wait "running";
     wait ms 1500;
-    start cmd "04_morse_code" wait "running";
-    wait ms 1500;
     start cmd "03c_hand_gesture" wait "running";
     wait ms 1500;
     
