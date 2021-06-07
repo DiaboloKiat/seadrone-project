@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
+# -*- coding: UTF-8 -*-
 # https://maker.pro/raspberry-pi/projects/raspberry-pi-webcam-robot
 # https://osoyoo.com/2020/04/30/install-a-web-camera-on-raspberry-pi/
 

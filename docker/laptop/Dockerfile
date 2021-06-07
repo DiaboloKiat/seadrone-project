@@ -142,10 +142,12 @@ RUN pip3 install --upgrade \
     lxml \
     empy  \
     opencv-python \
+    opencv-contrib-python==4.2.0.34 \
     wheel \
     future \
     six==1.14.0 \
     tf_slim \
+    imutils \
     scipy
 
 RUN pip install mediapipe
