@@ -109,7 +109,7 @@ RUN pip3 install --upgrade pip setuptools
 RUN pip3 install \
     gym \
     numpy \
-    --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow_gpu-1.14.0+nv19.7 \
+    --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow_gpu==1.14.0+nv19.7 \
     gast==0.2.2 \
     matplotlib \
     pandas \
