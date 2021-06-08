@@ -25,50 +25,34 @@ RUN echo "${USER}:111111" | chpasswd
 RUN apt-get update && apt-get install --no-install-recommends -y \
     libusb-1.0 \
     gtk+-3.0 \
+    build-essential \
     make \
     cmake \
     g++ \
     tzdata \
+    dirmngr \
+    lsb-release \
+    gnupg2 \
     libpcap-dev \
     libglfw3-dev \
+    python3-pip \
+    python3-opencv  \
     python3-scipy   \
     python-vcstools \
     python-scipy \
-    locales \
-    git \
-    vim \
-    gedit \
-    wget \
-    sudo \
-    unzip \
-    gcc-8 g++-8 \
-    ca-certificates \
-    curl \
-    ffmpeg \
-    net-tools \
-    dirmngr \
-    gnupg2 \
-    mercurial \
-    python-gtk2 \
     python-gobject \
-    python-tk \
-    python3-pip \
-    python3-dev \
-    python3-opencv \
-    python3-setuptools \
-    python3-rospkg -y \
-    lsb-release \
+    python-gtk2 \
     libcanberra-gtk-module \
     libcanberra-gtk3-module \
-    libignition-math4-dev \
-    libmove-base-msgs-dev \
-    ruby-full \
-    libopencv-core-dev \
-    libopencv-highgui-dev \
-    libopencv-imgproc-dev \
-    libopencv-video-dev \
-    libopencv-calib3d-dev \
-    libopencv-features2d-dev \
+    libfltk1.3-dev \ 
+    freeglut3-dev \ 
+    libpng-dev \ 
+    libjpeg-dev \
+    libxft-dev \ 
+    libxinerama-dev \ 
+    libtiff5-dev \ 
+    netbase \ 
+    fluid \ 
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -81,36 +65,37 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C1CF6E31E6
 # install ros packages
 ENV ROS_DISTRO melodic
 RUN apt-get update && apt-get install -y \ 
-    ros-$ROS_DISTRO-desktop-full \
+    ros-${ROS_DISTRO}-desktop-full \
     ros-$ROS_DISTRO-joy \
-    ros-$ROS_DISTRO-joystick-drivers \
-    ros-$ROS_DISTRO-teleop-twist-joy \
-    ros-$ROS_DISTRO-rviz-imu-plugin \
-    ros-$ROS_DISTRO-roslint \
-    ros-$ROS_DISTRO-rosserial \
-    ros-$ROS_DISTRO-rosserial-arduino \
-    ros-$ROS_DISTRO-controller-manager \
-    ros-$ROS_DISTRO-twist-mux \
-    ros-$ROS_DISTRO-interactive-marker-twist-server \
-    ros-$ROS_DISTRO-perception \
-    ros-$ROS_DISTRO-rgbd-launch \
-    ros-$ROS_DISTRO-robot-localization \
-    ros-$ROS_DISTRO-spacenav-node \
-    ros-$ROS_DISTRO-tf2-sensor-msgs \
-    ros-$ROS_DISTRO-pointcloud-to-laserscan \
-    ros-$ROS_DISTRO-velodyne-simulator \
     ros-$ROS_DISTRO-serial \
     ros-$ROS_DISTRO-soem \
     ros-$ROS_DISTRO-openslam-gmapping \
     ros-$ROS_DISTRO-geodesy \
     ros-$ROS_DISTRO-cartographer-* \
     ros-$ROS_DISTRO-ddynamic-reconfigure \
+    ros-$ROS_DISTRO-perception \
+    ros-$ROS_DISTRO-rgbd-launch \
+    ros-$ROS_DISTRO-joystick-drivers \
+    ros-$ROS_DISTRO-pointcloud-to-laserscan \
+    ros-$ROS_DISTRO-robot-localization \
+    ros-$ROS_DISTRO-spacenav-node \
+    ros-$ROS_DISTRO-tf2-sensor-msgs \
+    ros-$ROS_DISTRO-controller-manager \
+    ros-$ROS_DISTRO-twist-mux \
+    ros-$ROS_DISTRO-velodyne-simulator \
+    ros-$ROS_DISTRO-gazebo-ros \
+    ros-$ROS_DISTRO-move-base-msgs \
     ros-$ROS_DISTRO-lms1xx \
+    ros-$ROS_DISTRO-rviz-imu-plugin \
+    ros-$ROS_DISTRO-interactive-marker-twist-server \
+    ros-$ROS_DISTRO-teleop-twist-joy \
+    ros-$ROS_DISTRO-rosserial-arduino \
+    ros-$ROS_DISTRO-rosserial \
     python-rosdep \
     python-rosinstall \
     python-rosinstall-generator \
     python-wstool \
-    build-essential \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # bootstrap rosdep
@@ -124,7 +109,7 @@ RUN pip3 install --upgrade pip setuptools
 RUN pip3 install \
     gym \
     numpy \
-    tensorflow==1.14.0 \
+    --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v42 tensorflow_gpu-1.14.0+nv19.7 \
     gast==0.2.2 \
     matplotlib \
     pandas \
@@ -133,7 +118,6 @@ RUN pip3 install \
     jupyter \
     ipykernel \
     rospkg \
-    mediapipe \
     catkin-tools \
     scikit-image \
     scikit-learn \
@@ -142,15 +126,12 @@ RUN pip3 install \
     lxml \
     empy  \
     opencv-python \
-    opencv-contrib-python==4.2.0.34 \
     wheel \
     future \
     six==1.14.0 \
     tf_slim \
     imutils \
     scipy
-
-RUN pip install mediapipe
 
 ####################################### procman ###########################################
 
