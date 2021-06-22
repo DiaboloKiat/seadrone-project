@@ -213,7 +213,6 @@ RUN cd ${HOME} && git clone https://github.com/google/mediapipe.git
 RUN chown -R ${USER}:${USER} ${HOME}/
 RUN echo "seadrone ALL=(ALL)  ALL" > /etc/sudoers
 
-RUN echo "cd ~/seadrone-project" >> ${HOME}/.bashrc
 
 # Support of nvidia-docker 2.0
 ENV NVIDIA_VISIBLE_DEVICES=all
